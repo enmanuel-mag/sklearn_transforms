@@ -20,3 +20,19 @@ class DropColumns(BaseEstimator, TransformerMixin):
         samples = temp.sample(frac =.5)
         import pandas as pd
         return pd.concat([samples, temp])
+
+class AddExamples(BaseEstimator, TransformerMixin):
+    def __init__(self, columns):
+        self.columns = columns
+
+    def fit(self, X, y=None):
+        return self
+    
+    def transform(self, X):
+        
+        # Primero copiamos el dataframe de datos de entrada 'X'
+        data = X.copy()
+        # Devolvemos un nuevo dataframe de datos sin las columnas no deseadas
+        import pandas as pd
+        samples = data.sample(frac =.5)
+        return pd.concat([samples, data])

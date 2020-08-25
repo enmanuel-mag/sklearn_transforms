@@ -15,11 +15,7 @@ class DropColumns(BaseEstimator, TransformerMixin):
         data = X.copy()
         # Devolvemos un nuevo dataframe de datos sin las columnas no deseadas
         data['DIV_PC'] = data['TOTAL_VENTAS'] - data['TOTAL_COMPRAS']
-        temp = data.drop(labels=self.columns, axis='columns')
-        
-        samples = temp.sample(frac =.5)
-        import pandas as pd
-        return pd.concat([samples, temp])
+        return data
 
 class AddExamples(BaseEstimator, TransformerMixin):
     def __init__(self, columns):

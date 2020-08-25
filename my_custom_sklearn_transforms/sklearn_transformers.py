@@ -25,12 +25,12 @@ class AddExamples(BaseEstimator, TransformerMixin):
         return self
     
     def transform(self, X):
-        
+        import pandas as pd
         # Primero copiamos el dataframe de datos de entrada 'X'
         data = pd.DataFrame(X, index=range(X.shape[0]),
                           columns=range(X.shape[1]))
         data = X.copy()
         # Devolvemos un nuevo dataframe de datos sin las columnas no deseadas
-        import pandas as pd
+        
         samples = data.sample(frac =.5)
         return pd.concat([samples, data])
